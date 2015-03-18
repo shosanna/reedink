@@ -22,7 +22,7 @@ group :development, :test do
   gem "quiet_assets"
 
   gem "rspec"
-  gem "rspec_rails"
+  gem "rspec-rails"
   gem "timecop"
   gem "factory_girl_rails"
   gem "database_cleaner"
@@ -33,5 +33,5 @@ group :development, :test do
   gem "pry-stack_explorer"
 
   gem "better_errors"
-  gem "bidning_of_caller"
+  gem "binding_of_caller"
 end
