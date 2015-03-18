@@ -1,1 +1,19 @@
 h1 = @book.title
+
+- if current_user.reading? @book
+
+  - current_user.progress_for(@book).each do |progress|
+    = progress.page_from
+    '
+    = progress.page_to
+
+  h2 Log new progress
+
+  = simple_form_for @progress do |f|
+    = f.input :page_from
+    = f.input :page_to
+    = f.hidden_field :reading_status_id
+
+    button.btn.btn-primary type="submit" Save progress
+- else
+  p = start_reading_link book

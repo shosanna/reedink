@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318210937) do
+ActiveRecord::Schema.define(version: 20150318212645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20150318210937) do
     t.string   "author",     null: false
     t.integer  "page_count", null: false
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "progresses", force: true do |t|
+    t.uuid     "reading_status_id", null: false
+    t.integer  "page_from",         null: false
+    t.integer  "page_to",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

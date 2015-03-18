@@ -9,7 +9,7 @@ ul
       - if book.users.include? current_user
         p You're reading this
       - else
-        p = link_to "start reading", book_reading_statuses_path(book), method: "POST"
+        p = start_reading_link book
 
       '
       = link_to "delete", book, method: "DELETE", data: { confirm: "Are you sure?" }

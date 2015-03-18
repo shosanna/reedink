@@ -9,6 +9,7 @@ class BooksController < AuthenticatedController
 
   def show
     @book = Book.find(params[:id])
+    @progress = current_user.status_for(@book).progresses.build
   end
 
   def create

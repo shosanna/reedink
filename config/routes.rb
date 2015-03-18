@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     resources :reading_statuses
   end
 
+  resources :progresses
+
   root to: "books#index"
 end
