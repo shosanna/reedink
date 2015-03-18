@@ -2,6 +2,9 @@ h1 Book
 
 ul
   - @books.each do |book|
-    li = book.title
+    li
+      = book.title
+      '
+      = link_to "delete", book, method: "delete", data: { confirm: "Are you sure?" }
 
 = link_to "Add new book", new_book_path

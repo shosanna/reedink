@@ -10,11 +10,17 @@ class BooksController < AuthenticatedController
   def create
     @book = Book.new(book_params)
     if @book.save
-      flash[:success] = "Book was created"
+      flash[:success] = "Book was created."
       redirect_to books_path
     else
       render :new
     end
+  end
+
+  def destroy
+    Book.find(params[:id]).destroy
+    flash[:success] = "Book was deleted."
+    redirect_to books_path
   end
 
   private
