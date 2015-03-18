@@ -1,0 +1,20 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: darth
+  password:
+  template: template0
+
+development:
+  database: reedink_development
+  <<: *defaults
+
+test: &test
+  database: reedink_test
+  <<: *defaults
+
+production:
+  database: reedink_development
+  <<: *defaults
