@@ -1,0 +1,7 @@
+h1 Book
+
+ul
+  - @books.each do |book|
+    li = book.title
+
+= link_to "Add new book", new_book_path

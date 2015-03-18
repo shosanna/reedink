@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Reedink
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = csrf_meta_tags
+
+  body
+    = render "shared/navbar_visitor"
+
+    .container
+      = render "shared/flash_messages"
+
+      = yield
