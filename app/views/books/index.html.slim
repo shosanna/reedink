@@ -3,8 +3,15 @@ h1 Book
 ul
   - @books.each do |book|
     li
-      = book.title
+      = link_to book.title, book
+
+      - # TODO - 1+n query
+      - if book.users.include? current_user
+        p You're reading this
+      - else
+        p = link_to "start reading", book_reading_statuses_path(book), method: "POST"
+
       '
-      = link_to "delete", book, method: "delete", data: { confirm: "Are you sure?" }
+      = link_to "delete", book, method: "DELETE", data: { confirm: "Are you sure?" }
 
 = link_to "Add new book", new_book_path
