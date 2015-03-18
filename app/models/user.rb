@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :reading_statuses
   has_many :progresses, through: :reading_statuses
   has_many :books, through: :reading_statuses
+  has_many :skills
 
   def reading?(book)
     books.include? book

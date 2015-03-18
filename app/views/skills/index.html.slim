@@ -1,0 +1,13 @@
+h1 Skills
+
+ul
+  - @skills.each do |skill|
+    li
+      = skill.name
+      '
+      = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
+
+= simple_form_for @skill do |f|
+  = f.input :name
+
+  button.btn.btn-primary type="submit" Submit
