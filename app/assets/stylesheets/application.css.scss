@@ -1,1 +1,11 @@
 @import "bootstrap";
+
+.d3-progress-bar {
+  background-color: rgba(185, 18, 27, 0.6);
+  height: 40px;
+  width: 200px;
+
+  .bar {
+    fill: rgba(185, 18, 27, 0.8);
+  }
+}

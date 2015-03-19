@@ -7,6 +7,8 @@ h1 = @book.title
     '
     = progress.page_to
 
+  .d3-progress-bar
+
   h2 Log new progress
 
   = simple_form_for @progress do |f|
@@ -17,3 +19,6 @@ h1 = @book.title
     button.btn.btn-primary type="submit" Save progress
 - else
   p = start_reading_link book
+
+script type="text/javascript"
+  = "visualizeReadPages(#{@dataset}, #{@pages})";

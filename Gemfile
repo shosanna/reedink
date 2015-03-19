@@ -14,6 +14,7 @@ gem "pg"
 gem "simple_form"
 gem "devise"
 gem "jquery-rails"
+gem "d3-rails"
 
 gem "bcrypt", "~> 3.1.7"
 gem "unicorn"
