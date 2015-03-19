@@ -8,6 +8,7 @@ nav.navbar.navbar-default
         = nav_link "Books", books_path
         = nav_link "Skills", skills_path
 
-      p.navbar-text.navbar-right
-        ' Signed in as #{current_user.email},
-        = link_to "log out", destroy_user_session_path
+      - if current_user
+        p.navbar-text.navbar-right
+          ' Signed in as #{current_user.email},
+          = link_to "log out", destroy_user_session_path, method: "DELETE"
