@@ -1,17 +1,26 @@
 h1 Book
 
-ul
+table.table.table-bordered.table-striped
+  thead
+    tr
+      th Title
+      th Author
+      th Reading status
+      th Actions
+  tbody
   - @books.each do |book|
-    li
-      = link_to book.title, book
+    tr
+      td = link_to book.title, book
+      td = book.author
 
-      - # TODO - 1+n query
-      - if book.users.include? current_user
-        p You're reading this
-      - else
-        p = start_reading_link book
+      td
+        - # TODO - 1+n query
+        - if book.users.include? current_user
+          span.label.label-default Currently reading
+        - else
+          p = start_reading_link book
 
-      '
-      = link_to "delete", book, method: "DELETE", data: { confirm: "Are you sure?" }
+      td = link_to book, method: "DELETE", data: { confirm: "Are you sure?" } do
+        span.glyphicon.glyphicon-trash
 
 = link_to "Add new book", new_book_path
