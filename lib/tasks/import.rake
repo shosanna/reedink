@@ -38,6 +38,6 @@ task :import_data => :environment do
           ["The Art of Prolog","Ehud Sterling Leon, Shapiro","552"]]
 
   data.each do |item|
-    Book.create!(title: item[0], author: item[1], pages: item[2], url: item[3])
+    Book.create!(title: item[0], author: item[1], page_count: item[2], url: item[3])
   end
 end
