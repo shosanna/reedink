@@ -17,8 +17,9 @@ h1 = @book.title
     = f.hidden_field :reading_status_id
 
     button.btn.btn-primary type="submit" Save progress
-- else
-  p = start_reading_link book
 
-script type="text/javascript"
-  = "visualizeReadPages(#{@dataset}, #{@pages})";
+  script type="text/javascript"
+    = "visualizeReadPages(#{@dataset}, #{@book.page_count})";
+
+- else
+  p = start_reading_link @book
