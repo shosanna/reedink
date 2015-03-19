@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require d3
+//= require select2
 //= require_tree .
 
 function visualizeReadPages(dataset, pages) {
