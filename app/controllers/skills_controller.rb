@@ -2,6 +2,8 @@ class SkillsController < AuthenticatedController
   def index
     @skills = current_user.skills
     @skill = Skill.new(user_id: current_user.id)
+
+    @report = Report.new
   end
 
   def create
@@ -28,4 +30,5 @@ class SkillsController < AuthenticatedController
   def skill_params
     params.require(:skill).permit(:user_id, :name)
   end
+
 end

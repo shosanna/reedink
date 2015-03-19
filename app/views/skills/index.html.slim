@@ -1,13 +1,21 @@
-h1 Skills
+.row
+  h1 Skills
+  ul
+    - @skills.each do |skill|
+      li
+        = skill.name
+        '
+        = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
+  h2 Log new progress
+  = simple_form_for @report do |f|
+    = f.input :title
+    = f.input :note
+    = f.association :skill, selected: 1
 
-ul
-  - @skills.each do |skill|
-    li
-      = skill.name
-      '
-      = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
+    button.btn.btn-primary type="submit" Submit
+.row
+  h2 Create new skill
+  = simple_form_for @skill do |f|
+    = f.input :name
 
-= simple_form_for @skill do |f|
-  = f.input :name
-
-  button.btn.btn-primary type="submit" Submit
+    button.btn.btn-primary type="submit" Submit

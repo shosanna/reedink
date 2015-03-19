@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :progresses
   resources :skills
+  resources :reports
 
   root to: "books#index"
 end
