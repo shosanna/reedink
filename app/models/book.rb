@@ -1,4 +1,6 @@
 class Book < ActiveRecord::Base
+  include ArelHelpers::ArelTable
+
   validates :title, :author, :page_count, presence: true
 
   has_many :reading_statuses

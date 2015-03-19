@@ -1,6 +1,10 @@
 class BooksController < AuthenticatedController
   def index
-    @books = Book.all
+    join_params = Book.arel_table.join(ReadingStatus.arel_table, Arel::OuterJoin)
+                                 .on(Book[:id].eq(ReadingStatus[:book_id])
+                                 .and(ReadingStatus[:user_id].eq(User.first.id)))
+                                 .join_sources
+    @books = Book.all.includes(:tags).joins(join_params)
   end
 
   def new

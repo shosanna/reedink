@@ -5,6 +5,7 @@ table.table.table-bordered.table-striped
     tr
       th Title
       th Author
+      th Tags
       th Reading status
       th Actions
   tbody
@@ -12,6 +13,7 @@ table.table.table-bordered.table-striped
     tr
       td = link_to book.title, book
       td = book.author
+      td = book.tag_names
 
       td
         - # TODO - 1+n query
