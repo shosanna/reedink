@@ -3,6 +3,7 @@
   = f.input :author
   = f.input :page_count
   = f.input :url
+  = f.input :tag_names, multiple: "multiple", input_html: { class: "select2-tags", "data-tags": Tag.all.map(&:name).to_json }
 
   button.btn.btn-primary type="submit" Submit
 

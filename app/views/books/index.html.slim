@@ -20,7 +20,11 @@ table.table.table-bordered.table-striped
         - else
           p = start_reading_link book
 
-      td = link_to book, method: "DELETE", data: { confirm: "Are you sure?" } do
-        span.glyphicon.glyphicon-trash
+      td
+        = link_to edit_book_path(book) do
+          span.glyphicon.glyphicon-edit
+
+        = link_to book, method: "DELETE", data: { confirm: "Are you sure?" } do
+          span.glyphicon.glyphicon-trash
 
 = link_to "Add new book", new_book_path

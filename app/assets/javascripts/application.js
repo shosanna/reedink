@@ -30,3 +30,17 @@ function prepareSVG(w,h) {
     .attr("height", h);
   return svg;
 }
+
+$(function() {
+  $(".select2-tags").each(function() {
+    var data = $(this).attr("data-tags");
+    if (data) {
+      data = JSON.parse(data);
+    }
+
+    $(this).select2({
+      tags: data || [],
+      tokenSeparators: [',', ' ']
+    });
+  })
+});

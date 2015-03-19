@@ -25,6 +25,20 @@ class BooksController < AuthenticatedController
     end
   end
 
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    if @book.update_attributes(book_params)
+      flash[:success] = "Book was updated."
+      redirect_to @book
+    else
+      render :edit
+    end
+  end
+
   def destroy
     Book.find(params[:id]).destroy
     flash[:success] = "Book was deleted."
@@ -34,6 +48,6 @@ class BooksController < AuthenticatedController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :page_count, :url)
+    params.require(:book).permit(:title, :author, :page_count, :url, :tag_names)
   end
 end
