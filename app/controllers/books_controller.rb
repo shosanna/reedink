@@ -4,7 +4,7 @@ class BooksController < AuthenticatedController
                                  .on(Book[:id].eq(ReadingStatus[:book_id])
                                  .and(ReadingStatus[:user_id].eq(User.first.id)))
                                  .join_sources
-    @books = Book.all.includes(:tags).joins(join_params)
+    @books = Book.select("books.*, reading_statuses.user_id").includes(:tags).joins(join_params)
   end
 
   def new

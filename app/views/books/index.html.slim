@@ -16,8 +16,7 @@ table.table.table-bordered.table-striped
       td = book.tag_names
 
       td
-        - # TODO - 1+n query
-        - if book.users.include? current_user
+        - if book.user_id
           span.label.label-default Currently reading
         - else
           p = start_reading_link book
