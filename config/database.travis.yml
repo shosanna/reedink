@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: reedink_test
+  username: postgres

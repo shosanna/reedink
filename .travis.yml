@@ -1,3 +1,11 @@
 language: ruby
 rvm:
   - 2.2.1
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database reedink_test;' -U postgres
+  - bundle exec rake db:migrate --trace
+
+script:
+  - RAILS_ENV=test bundle exec rake spec
