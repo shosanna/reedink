@@ -15,20 +15,40 @@
 
 .d3-weekly-reading-chart {
   .bar {
-    fill: rgb(43, 51, 84); 
+    fill: rgb(43, 51, 84);
   }
 }
 
-table {
+.skills-table {
   th {
     padding-right: 15px;
   }
+
+  td, th {
+    padding: 0;
+
+  }
 }
 
-.green {
-  color: green;
+.calendar-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 1px;
 }
 
-.red {
-  color: #d66;
+.checked-box {
+  background: #9f9;
+}
+
+.unchecked-box {
+  background: #f99;
+}
+
+.unchecked-today-box {
+  background: #999;
+
+  &:hover {
+    background: #666;
+  }
 }

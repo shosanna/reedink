@@ -1,19 +1,20 @@
 .row
   h1 Skills
-  table
+
+  table.skills-table
     - @skills.each do |skill|
       tr
         th = skill.name
         - (7.days.ago.to_date).upto(Date.today).each do |date|
           td
             - if @reports.fetch(skill.name, []).include?(date)
-              span.glyphicon.glyphicon-check.green
+              .calendar-box.checked-box
             - else
               - if date == Date.today
                 = link_to reports_path(report: { skill_id: skill.id }), method: "POST" do
-                  span.glyphicon.glyphicon-unchecked
+                  .calendar-box.unchecked-today-box
               - else
-                span.glyphicon.glyphicon-unchecked.red
+                .calendar-box.unchecked-box
 
         td style="width: 40px;"
         td = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
