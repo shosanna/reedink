@@ -2,7 +2,7 @@ class BooksController < AuthenticatedController
   def index
     join_params = Book.arel_table.join(ReadingStatus.arel_table, Arel::OuterJoin)
                                  .on(Book[:id].eq(ReadingStatus[:book_id])
-                                 .and(ReadingStatus[:user_id].eq(User.first.id)))
+                                 .and(ReadingStatus[:user_id].eq(current_user.id)))
                                  .join_sources
     @books = Book.select("books.*, reading_statuses.user_id").includes(:tags).joins(join_params)
   end
