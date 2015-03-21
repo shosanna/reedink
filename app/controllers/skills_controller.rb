@@ -7,7 +7,7 @@ class SkillsController < AuthenticatedController
 
     @skills.each do |skill|
       reports = skill.reports.map { |r| r.created_at.to_date }
-      @reports[skill.name] = reports 
+      @reports[skill.name] = reports
     end
 
     @report = Report.new

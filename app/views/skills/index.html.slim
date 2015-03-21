@@ -1,23 +1,28 @@
 .row
   h1 Skills
 
-  table.skills-table
-    - @skills.each do |skill|
-      tr
-        th = skill.name
-        - (7.days.ago.to_date).upto(Date.today).each do |date|
-          td
-            - if @reports.fetch(skill.name, []).include?(date)
-              .calendar-box.checked-box
-            - else
-              - if date == Date.today
-                = link_to reports_path(report: { skill_id: skill.id }), method: "POST" do
-                  .calendar-box.unchecked-today-box
-              - else
-                .calendar-box.unchecked-box
+  .svg-table
 
-        td style="width: 40px;"
-        td = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
+  script
+    == "skillsTable(#{current_user.skill_data.to_json})"
+
+  /table.skills-table
+  /  - @skills.each do |skill|
+  /    tr
+  /      th = skill.name
+  /      - (7.days.ago.to_date).upto(Date.today).each do |date|
+  /        td
+  /          - if @reports.fetch(skill.name, []).include?(date)
+  /            .calendar-box.checked-box
+  /          - else
+  /            - if date == Date.today
+  /              = link_to reports_path(report: { skill_id: skill.id }), method: "POST" do
+  /                .calendar-box.unchecked-today-box
+  /            - else
+  /              .calendar-box.unchecked-box
+  /
+  /      td style="width: 40px;"
+  /      td = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
 
 .row
   h2 Create new skill

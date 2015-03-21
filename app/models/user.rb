@@ -37,4 +37,18 @@ class User < ActiveRecord::Base
       end
     end.sum
   end
+
+  def skill_data
+    skills.map do |skill|
+      {
+        skill: skill.name,
+        data: (7.days.ago.to_date).upto(Date.today).map do |date|
+          {
+            date: date,
+            report: !!skill.reports.where("date(created_at) = ?", date).first
+          }
+        end
+      }
+    end
+  end
 end
