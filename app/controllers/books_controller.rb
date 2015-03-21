@@ -4,7 +4,10 @@ class BooksController < AuthenticatedController
                                  .on(Book[:id].eq(ReadingStatus[:book_id])
                                  .and(ReadingStatus[:user_id].eq(current_user.id)))
                                  .join_sources
-    @books = Book.select("books.*, reading_statuses.user_id").includes(:tags).joins(join_params)
+    @books = Book.select("books.*, reading_statuses.user_id, reading_statuses.id as status_id")
+                 .includes(:tags)
+                 .joins(join_params)
+                 .order("reading_statuses.user_id")
   end
 
   def new
@@ -16,8 +19,8 @@ class BooksController < AuthenticatedController
 
     status = current_user.status_for(@book)
     if status
-      @progress = status.progresses.build
       @dataset = status.progresses.map { |p| [p.page_from, p.page_to] }
+      @progress = status.progresses.build
     end
   end
 

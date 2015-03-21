@@ -19,7 +19,7 @@ h1 = @book.title
     button.btn.btn-primary type="submit" Save progress
 
   script type="text/javascript"
-    = "visualizeReadPages(#{@dataset}, #{@book.page_count})";
+    = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
 
 - else
   p = start_reading_link @book

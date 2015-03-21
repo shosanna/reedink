@@ -17,7 +17,8 @@ table.table.table-bordered.table-striped
 
       td
         - if book.user_id
-          span.label.label-default Currently reading
+          span.label.label-default title="#{read_pages(book, current_user)} / #{book.page_count} pages"
+            = "#{read_percentage(book, current_user)}% read"
         - else
           p = start_reading_link book
 

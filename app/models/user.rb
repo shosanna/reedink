@@ -20,4 +20,9 @@ class User < ActiveRecord::Base
   def progress_for(book)
     reading_statuses.where(book_id: book.id).first.progresses
   end
+
+  def read_pages(status_id)
+    status = reading_statuses.find(status_id)
+    status.progresses.map { |p| p.page_to - p.page_from }.sum
+  end
 end
