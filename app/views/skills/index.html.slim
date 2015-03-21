@@ -7,16 +7,16 @@
           = skill.name
           '
           = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
-        - 7.times do |day|
+        - (7.days.ago.to_date).upto(Date.today).each do |date|
           td
-            - if @reports.fetch(skill.name, []).include?(day.days.ago.to_date)
-              span.glyphicon.glyphicon-check
+            - if @reports.fetch(skill.name, []).include?(date)
+              span.glyphicon.glyphicon-check.green
             - else
-              - if day.days.ago.to_date == Time.current.to_date
+              - if date == Date.today
                 = link_to reports_path(report: { skill_id: skill.id }), method: "POST" do
                   span.glyphicon.glyphicon-unchecked
               - else
-                span.glyphicon.glyphicon-unchecked
+                span.glyphicon.glyphicon-unchecked.red
 
 .row
   h2 Create new skill
