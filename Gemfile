@@ -18,6 +18,7 @@ gem "jquery-rails"
 gem "d3-rails"
 gem "select2-rails"
 
+gem "trackets"
 gem "bcrypt", "~> 3.1.7"
 gem "unicorn"
 

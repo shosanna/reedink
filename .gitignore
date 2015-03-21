@@ -16,3 +16,4 @@
 
 /coverage
 
+config/initializers/trackets.rb
