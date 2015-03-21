@@ -3,10 +3,7 @@
   table
     - @skills.each do |skill|
       tr
-        th
-          = skill.name
-          '
-          = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
+        th = skill.name
         - (7.days.ago.to_date).upto(Date.today).each do |date|
           td
             - if @reports.fetch(skill.name, []).include?(date)
@@ -17,6 +14,9 @@
                   span.glyphicon.glyphicon-unchecked
               - else
                 span.glyphicon.glyphicon-unchecked.red
+
+        td style="width: 40px;"
+        td = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
 
 .row
   h2 Create new skill
