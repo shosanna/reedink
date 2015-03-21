@@ -17,8 +17,8 @@ table.table.table-bordered.table-striped
 
       td
         - if book.user_id
-          span.label.label-default title="#{read_pages(book, current_user)} / #{book.page_count} pages"
-            = "#{read_percentage(book, current_user)}% read"
+          span.label.label-default title="#{read_pages(book.status_id, current_user)} / #{book.page_count} pages"
+            = "#{read_percentage(book.status_id, book, current_user)}% read"
         - else
           p = start_reading_link book
 
@@ -29,4 +29,6 @@ table.table.table-bordered.table-striped
         = link_to book, method: "DELETE", data: { confirm: "Are you sure?" } do
           span.glyphicon.glyphicon-trash
 
-= link_to "Add new book", new_book_path
+hr
+
+= link_to "Add new book", new_book_path, class: "btn btn-default"

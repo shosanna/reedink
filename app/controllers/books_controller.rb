@@ -17,10 +17,10 @@ class BooksController < AuthenticatedController
   def show
     @book = Book.find(params[:id])
 
-    status = current_user.status_for(@book)
-    if status
-      @dataset = status.progresses.map { |p| [p.page_from, p.page_to] }
-      @progress = status.progresses.build
+    @status = current_user.status_for(@book)
+    if @status
+      @dataset = @status.progresses.map { |p| [p.page_from, p.page_to] }
+      @progress = @status.progresses.build
     end
   end
 

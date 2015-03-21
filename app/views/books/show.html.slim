@@ -2,12 +2,12 @@ h1 = @book.title
 
 - if current_user.reading? @book
 
-  - current_user.progress_for(@book).each do |progress|
-    = progress.page_from
-    '
-    = progress.page_to
+  p You've read #{read_pages(@status.id, current_user)} / #{@book.page_count}
+    pages (#{read_percentage(@status.id, @book, current_user)}%).
 
   .d3-progress-bar
+  script type="text/javascript"
+    = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
 
   h2 Log new progress
 
@@ -17,9 +17,14 @@ h1 = @book.title
     = f.hidden_field :reading_status_id
 
     button.btn.btn-primary type="submit" Save progress
+    '
+    = link_to "back to all books", books_path
 
-  script type="text/javascript"
-    = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
+  - current_user.progress_for(@book).each do |progress|
+    = progress.page_from
+    '
+    = progress.page_to
+
 
 - else
   p = start_reading_link @book
