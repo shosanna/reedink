@@ -16,13 +16,23 @@ window.skillsTable = (data) ->
         .attr('height', rowHeight)
         .attr('transform', (d, i) -> "translate(0, #{i*22})")
 
+  today = new Date()
+  todayString = "#{today.getFullYear()}-#{today.getMonth() + 1}-#{today.getDate()}"
+
   box = row.selectAll('rect').data((d) -> d.data)
     .enter()
     .append('rect')
     .attr('width', 20)
     .attr('x', (d, i) -> i * 22)
     .attr('height', '20')
-    .attr('class', 'bar')
+    .attr "class", (d) ->
+      if d.report
+        "checked-box"
+      else
+        if d.date == todayString
+          "unchecked-today-box"
+        else
+          "unchecked-box"
 
 window.visualizeWeeklyReading = (dataset, days) ->
   w = $('.container').width()
@@ -39,7 +49,7 @@ window.visualizeWeeklyReading = (dataset, days) ->
     .length - barPadding)
     .attr('height', (d) -> d * 4)
     .attr('y', (d) -> h - d)
-    .attr 'x', (d, i) -> i * w / dataset
+    .attr('x', (d, i) -> i * w / dataset)
     .length
 
   svg.selectAll('text')

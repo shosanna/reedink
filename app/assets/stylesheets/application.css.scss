@@ -38,17 +38,17 @@
 }
 
 .checked-box {
-  background: #9f9;
+  fill: #9f9;
 }
 
 .unchecked-box {
-  background: #f99;
+  fill: #f99;
 }
 
 .unchecked-today-box {
-  background: #999;
+  fill: #999;
 
   &:hover {
-    background: #666;
+    fill: #666;
   }
 }

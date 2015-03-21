@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
         skill: skill.name,
         data: (7.days.ago.to_date).upto(Date.today).map do |date|
           {
-            date: date,
+            date: date.strftime("%Y-%-m-%-d"),
             report: !!skill.reports.where("date(created_at) = ?", date).first
           }
         end
