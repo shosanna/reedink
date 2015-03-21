@@ -10,7 +10,6 @@ h1 Profile
     ol
       - @skills.each do |skill|
         li = link_to skill.name, skills_path
-.row
-  .weekly-reading-chart
-    script type="text/javascript"
-      = "visualizeWeeklyReading([100, 20, 0, 80, 120, 30, 20])";
+.d3-weekly-reading-chart
+  script type="text/javascript"
+    == "visualizeWeeklyReading(#{@dataset.to_json}, #{@days.to_json})";

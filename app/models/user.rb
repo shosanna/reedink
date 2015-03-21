@@ -25,4 +25,16 @@ class User < ActiveRecord::Base
     status = reading_statuses.find(status_id)
     status.progresses.map { |p| p.page_to - p.page_from }.sum
   end
+  
+  def total_pages_per_day(day)
+    reading_statuses.map do |status|
+      status.progresses.inject(0) do |sum, x|
+        if day.to_date == x.created_at.to_date
+          sum + (x.page_to - x.page_from)
+        else
+          sum + 0
+        end
+      end
+    end.sum
+  end
 end

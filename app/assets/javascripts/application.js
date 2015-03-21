@@ -4,17 +4,18 @@
 //= require select2
 //= require_tree .
 
-function visualizeWeeklyReading(dataset) {
-  var w = 400;
-  var h = 150;
+function visualizeWeeklyReading(dataset, days) {
+  var w = $(".container").width();
+  var h = 350;
   var barPadding = 1;
 
-  var svg = prepareSVG(w,h)
+  var svg = prepareSVG(w,h,".d3-weekly-reading-chart")
 
-  svg.selectall("rect")
+  svg.selectAll("rect")
      .data(dataset)
      .enter()
      .append("rect")
+     .attr("class", "bar")
      .attr("width", w / dataset.length - barPadding)
      .attr("height", function(d) {
        return d * 4;
@@ -25,13 +26,29 @@ function visualizeWeeklyReading(dataset) {
      .attr("x", function(d,i) {
        return i * (w / dataset.length);
      });
+
+  svg.selectAll("text")
+     .data(days)
+     .enter()
+     .append("text")
+     .text(function(d) {
+       return d;
+     })
+    .attr("x", function(d,i) {
+      return i * (w / days.length) + 5
+    })
+    .attr("y", function(d) {
+      return h - 10
+    })
+    .attr("font-size", "26px")
+    .attr("fill", "white")
 }
 
 function visualizeReadPages(dataset, pages) {
   var w = 200;
   var h = 40;
 
-  var svg = prepareSVG(w,h);
+  var svg = prepareSVG(w,h,".d3-progress-bar");
   var scale = d3.scale.linear()
     .domain([0, pages])
     .range([0, w]);
@@ -46,8 +63,8 @@ function visualizeReadPages(dataset, pages) {
     .attr("height", h);
 }
 
-function prepareSVG(w,h) {
-  var svg = d3.select(".d3-progress-bar")
+function prepareSVG(w,h, selector) {
+  var svg = d3.select(selector)
     .append("svg")
     .attr("width", w)
     .attr("height", h);
