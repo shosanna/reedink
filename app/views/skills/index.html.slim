@@ -1,27 +1,20 @@
 .row
   h1 Skills
   table
-
-    - 4.times do |week|
+    - @skills.each do |skill|
       tr
-        - @skills.each do |skill|
-          th
-            = skill.name
-            '
-            = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
-
-        - 7.times do |i|
+        th
+          = skill.name
+          '
+          = link_to "delete", skill, method: "DELETE", data: { confirm: "Are you sure?" }
+        - 7.times do |day|
           td
-            = (i + week * 7).days.ago.to_date
-              ' " "
+            - if @reports.fetch(skill.name, []).include?(day.days.ago.to_date)
+              span.glyphicon.glyphicon-check
+            - else
+              = link_to reports_path(report: { skill_id: skill.id }), method: "POST" do
+                span.glyphicon.glyphicon-unchecked
 
-          .skill-report-form
-            = simple_form_for @report do |f|
-              = f.input :title
-              = f.input :note
-              // = f.hidden_field :skill_id, value: skill.id
-
-              button.btn.btn-primary type="submit" Submit
 .row
   h2 Create new skill
   = simple_form_for @skill do |f|

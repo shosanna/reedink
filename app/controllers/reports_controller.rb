@@ -14,7 +14,7 @@ class ReportsController < AuthenticatedController
 
   private
 
-    def report_params
-      params.require(:report).permit(:title, :note)
-    end
+  def report_params
+    params.require(:report).permit(:title, :note, :skill_id)
+  end
 end
