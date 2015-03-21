@@ -3,19 +3,32 @@
 @import "select2";
 @import "select2-bootstrap";
 
+$progress-bar-color: rgba(185, 18, 27, 0.6);
+$progress-bar-highlight-color: rgba(185, 18, 27, 0.8);
+$weekly-reading-bar-color: rgb(185,18,27);
+$checked-color: #4C1B1B;
+$unchecked-color: #F6E497;
+$unchecked-today-color: #BD8D46;
+$main-link-color: #BD8D46;
+
+body {
+  color: $checked-color;
+}
+
 .d3-progress-bar {
-  background-color: rgba(185, 18, 27, 0.6);
+  background-color: $progress-bar-color;
   height: 40px;
   width: 200px;
 
   .bar {
-    fill: rgba(185, 18, 27, 0.8);
+    fill: $progress-bar-highlight-color;
+    opacity: 0.8;
   }
 }
 
 .d3-weekly-reading-chart {
   .bar {
-    fill: rgb(43, 51, 84);
+    fill: $weekly-reading-bar-color;
   }
 }
 
@@ -38,17 +51,36 @@
 }
 
 .checked-box {
-  fill: #9f9;
+  fill: $checked-color;
 }
 
 .unchecked-box {
-  fill: #f99;
+  fill: $unchecked-color;
 }
 
 .unchecked-today-box {
-  fill: #999;
+  fill: $unchecked-today-color;
 
   &:hover {
-    fill: #666;
+    fill: $checked-color;
   }
+}
+
+a {
+  color: $main-link-color;
+}
+
+a:hover {
+  color: darken($main-link-color, 10%);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: $main-link-color;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: darken($main-link-color, 10%);
+  border: none
 }
