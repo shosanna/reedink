@@ -12,7 +12,10 @@
             - if @reports.fetch(skill.name, []).include?(day.days.ago.to_date)
               span.glyphicon.glyphicon-check
             - else
-              = link_to reports_path(report: { skill_id: skill.id }), method: "POST" do
+              - if day.days.ago.to_date == Time.current.to_date
+                = link_to reports_path(report: { skill_id: skill.id }), method: "POST" do
+                  span.glyphicon.glyphicon-unchecked
+              - else
                 span.glyphicon.glyphicon-unchecked
 
 .row
