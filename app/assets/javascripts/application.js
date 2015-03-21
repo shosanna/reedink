@@ -4,11 +4,34 @@
 //= require select2
 //= require_tree .
 
+function visualizeWeeklyReading(dataset) {
+  var w = 400;
+  var h = 150;
+  var barPadding = 1;
+
+  var svg = prepareSVG(w,h)
+
+  svg.selectall("rect")
+     .data(dataset)
+     .enter()
+     .append("rect")
+     .attr("width", w / dataset.length - barPadding)
+     .attr("height", function(d) {
+       return d * 4;
+     })
+     .attr("y", function(d) {
+       return h - d;
+     })
+     .attr("x", function(d,i) {
+       return i * (w / dataset.length);
+     });
+}
+
 function visualizeReadPages(dataset, pages) {
   var w = 200;
   var h = 40;
 
-  svg = prepareSVG(w,h);
+  var svg = prepareSVG(w,h);
   var scale = d3.scale.linear()
     .domain([0, pages])
     .range([0, w]);

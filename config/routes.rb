@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :progresses
   resources :skills
   resources :reports
+  
+  resources :profile, only: :index
 
   root to: "books#index"
 end

@@ -1,0 +1,16 @@
+h1 Profile
+.row
+  .col-md-5
+    h3 Currently reading:
+    ol
+      - @books.each do |book|
+        li = link_to book.title, book_path(book.id)
+  .col-md-5
+    h3 Currently learning:
+    ol
+      - @skills.each do |skill|
+        li = link_to skill.name, skills_path
+.row
+  .weekly-reading-chart
+    script type="text/javascript"
+      = "visualizeWeeklyReading([100, 20, 0, 80, 120, 30, 20])";
