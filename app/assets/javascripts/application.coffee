@@ -14,7 +14,7 @@ window.skillsTable = (data) ->
         .enter()
         .append('g')
         .attr('height', rowHeight)
-        .attr('transform', (d, i) -> "translate(0, #{i*22})")
+        .attr('transform', (d, i) -> "translate(50, #{i*22})")
 
   today = new Date()
   todayString = "#{today.getFullYear()}-#{today.getMonth() + 1}-#{today.getDate()}"
@@ -33,6 +33,13 @@ window.skillsTable = (data) ->
           "unchecked-today-box"
         else
           "unchecked-box"
+
+  text = svg.selectAll('text').data(data)
+    .enter()
+    .append('text')
+    .text((d) -> d.skill)
+    .attr('y', (d,i) -> (i * 23) + 11)
+    .attr('x', 0)
 
 window.visualizeWeeklyReading = (dataset, days) ->
   w = $('.container').width()
