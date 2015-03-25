@@ -96,7 +96,7 @@ window.visualizeWeeklyReading = (dataset, days) ->
     .attr('x', (d, i) -> i * w / days.length + 5 + chartPaddingX )
     .attr('y', (d) -> h - 10)
     .attr('font-size', '14px')
-    .attr('fill', 'white')
+    .attr('fill', 'black')
 
   # AXIS
   svg.append('g')
