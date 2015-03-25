@@ -43,26 +43,36 @@ window.skillsTable = (data) ->
 
 window.visualizeWeeklyReading = (dataset, days) ->
   w = $('.container').width()
-  h = 350
+  h = 200
   barPadding = 1
   chartPaddingY = 20
   chartPaddingX = 50
 
   svg = prepareSVG(w, h, '.d3-weekly-reading-chart')
-
+  
+  # SCALES
   yScale = d3.scale.linear()
    .domain([0, d3.max(dataset)])
    .range([0, h - chartPaddingY])
 
   yScaleAxis = d3.scale.linear()
-    .domain([0,d3.max(dataset)])
+    .domain([chartPaddingY, d3.max(dataset) + chartPaddingY])
     .range([h, 0])
+
+  xScaleAxis = d3.scale.ordinal()
+    .domain(['','today'])
+    .rangePoints([0, w-20])
 
   yAxis = d3.svg.axis()
     .scale(yScaleAxis)
     .orient('right')
     .ticks(5)
 
+  xAxis = d3.svg.axis()
+    .scale(xScaleAxis)
+    .orient('bottom')
+
+  # BARS
   svg.append('g')
     .attr('class', 'bars')
     .selectAll('rect')
@@ -72,9 +82,10 @@ window.visualizeWeeklyReading = (dataset, days) ->
     .attr('class', 'bar')
     .attr('width', w / dataset.length - barPadding)
     .attr('height', (d) -> yScale(d))
-    .attr('y', (d) -> h - yScale(d))
+    .attr('y', (d) -> (h - yScale(d)))
     .attr('x', (d, i) -> (i * w / dataset.length) + chartPaddingX)
 
+  # DAY OF THE WEEK TEXTS
   svg.append('g')
     .attr('class', 'texts')
     .selectAll('text')
@@ -84,12 +95,16 @@ window.visualizeWeeklyReading = (dataset, days) ->
     .text((d) -> d)
     .attr('x', (d, i) -> i * w / days.length + 5 + chartPaddingX )
     .attr('y', (d) -> h - 10)
-    .attr('font-size', '26px')
+    .attr('font-size', '14px')
     .attr('fill', 'white')
 
+  # AXIS
   svg.append('g')
      .attr('class', 'axis')
      .call(yAxis)
+  svg.append('g')
+     .attr('class', 'axis')
+     .call(xAxis)
 
 window.visualizeReadPages = (dataset, pages) ->
   w = 200
