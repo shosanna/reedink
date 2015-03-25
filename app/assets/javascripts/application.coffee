@@ -48,8 +48,8 @@ window.visualizeWeeklyReading = (dataset, days) ->
   chartPaddingY = 20
   chartPaddingX = 50
 
-  svg = prepareSVG(w, h, '.d3-weekly-reading-chart')
-  
+  svg = prepareSVG(w, h + 20, '.d3-weekly-reading-chart')
+
   # SCALES
   yScale = d3.scale.linear()
    .domain([0, d3.max(dataset)])
@@ -60,8 +60,8 @@ window.visualizeWeeklyReading = (dataset, days) ->
     .range([h, 0])
 
   xScaleAxis = d3.scale.ordinal()
-    .domain(['','today'])
-    .rangePoints([0, w-20])
+    .domain(['last week', 'today'])
+    .rangePoints([0, w])
 
   yAxis = d3.svg.axis()
     .scale(yScaleAxis)
@@ -100,11 +100,18 @@ window.visualizeWeeklyReading = (dataset, days) ->
 
   # AXIS
   svg.append('g')
-     .attr('class', 'axis')
+     .attr('class', 'axis y-axis')
      .call(yAxis)
   svg.append('g')
-     .attr('class', 'axis')
+     .attr('class', 'axis x-axis')
      .call(xAxis)
+      .attr("transform", "translate(0, #{h})")
+
+  svg.select(".x-axis .tick:nth-child(1)")
+     .attr("transform", "translate(25, 0)")
+
+  svg.select(".x-axis .tick:nth-child(2)")
+     .attr("transform", "translate(#{w - 20}, 0)")
 
 window.visualizeReadPages = (dataset, pages) ->
   w = 200
