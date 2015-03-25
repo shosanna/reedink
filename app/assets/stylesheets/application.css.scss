@@ -9,7 +9,7 @@ $weekly-reading-bar-color: rgb(185,18,27);
 $checked-color: #4C1B1B;
 $unchecked-color: #F6E497;
 $unchecked-today-color: #BD8D46;
-$main-link-color: #BD8D46;
+$main-link-color: rgb(185,18,27);
 
 body {
   color: $checked-color;
@@ -29,6 +29,19 @@ body {
 .d3-weekly-reading-chart {
   .bar {
     fill: $weekly-reading-bar-color;
+  }
+
+  .axis {
+    path, .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+    }
+
+    text {
+      font-size: 11px;
+      font-family: Avenir;
+    }
   }
 }
 

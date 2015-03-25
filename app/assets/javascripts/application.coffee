@@ -45,29 +45,51 @@ window.visualizeWeeklyReading = (dataset, days) ->
   w = $('.container').width()
   h = 350
   barPadding = 1
+  chartPaddingY = 20
+  chartPaddingX = 50
 
   svg = prepareSVG(w, h, '.d3-weekly-reading-chart')
-  svg.selectAll('rect')
+
+  yScale = d3.scale.linear()
+   .domain([0, d3.max(dataset)])
+   .range([0, h - chartPaddingY])
+
+  yScaleAxis = d3.scale.linear()
+    .domain([0,d3.max(dataset)])
+    .range([h, 0])
+
+  yAxis = d3.svg.axis()
+    .scale(yScaleAxis)
+    .orient('right')
+    .ticks(5)
+
+  svg.append('g')
+    .attr('class', 'bars')
+    .selectAll('rect')
     .data(dataset)
     .enter()
     .append('rect')
     .attr('class', 'bar')
-    .attr('width', w / dataset
-    .length - barPadding)
-    .attr('height', (d) -> d * 4)
-    .attr('y', (d) -> h - d)
-    .attr('x', (d, i) -> i * w / dataset)
-    .length
+    .attr('width', w / dataset.length - barPadding)
+    .attr('height', (d) -> yScale(d))
+    .attr('y', (d) -> h - yScale(d))
+    .attr('x', (d, i) -> (i * w / dataset.length) + chartPaddingX)
 
-  svg.selectAll('text')
+  svg.append('g')
+    .attr('class', 'texts')
+    .selectAll('text')
     .data(days)
     .enter()
     .append('text')
     .text((d) -> d)
-    .attr('x', (d, i) -> i * w / days.length + 5)
+    .attr('x', (d, i) -> i * w / days.length + 5 + chartPaddingX )
     .attr('y', (d) -> h - 10)
     .attr('font-size', '26px')
-    .attr 'fill', 'white'
+    .attr('fill', 'white')
+
+  svg.append('g')
+     .attr('class', 'axis')
+     .call(yAxis)
 
 window.visualizeReadPages = (dataset, pages) ->
   w = 200
