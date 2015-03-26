@@ -8,4 +8,7 @@ class ReadingStatus < ActiveRecord::Base
 
   validate :user, :book, presence: true
 
+  def furthest_read
+    progresses.maximum(:page_to) || 0
+  end
 end
