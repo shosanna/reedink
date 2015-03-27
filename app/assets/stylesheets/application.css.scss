@@ -45,24 +45,6 @@ body {
   }
 }
 
-.skills-table {
-  th {
-    padding-right: 15px;
-  }
-
-  td, th {
-    padding: 0;
-
-  }
-}
-
-.calendar-box {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin: 1px;
-}
-
 .checked-box {
   fill: $checked-color;
 }

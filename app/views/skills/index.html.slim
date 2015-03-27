@@ -1,10 +1,8 @@
 .row
   h1 Skills
-
   .svg-table
-
-  script
-    == "skillsTable(#{current_user.skill_data.to_json})"
+    script
+      == "skillsTable(#{current_user.skill_data.to_json})"
 
 .row
   h2 Create new skill
