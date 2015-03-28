@@ -6,8 +6,8 @@ h1 = @book.title
     pages (#{read_percentage(@status.id, @book, current_user)}%).
 
   .d3-progress-bar
-  script type="text/javascript"
-    = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
+    script type="text/javascript"
+      = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
 
   h2 Log new progress
 
