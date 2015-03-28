@@ -27,6 +27,7 @@ class BooksController < AuthenticatedController
   def create
     @book = Book.new(book_params)
     if @book.save
+      @book.tag_names = params[:book][:tag_names]
       flash[:success] = "Book was created."
       redirect_to books_path
     else
@@ -57,6 +58,6 @@ class BooksController < AuthenticatedController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :page_count, :url, :tag_names)
+    params.require(:book).permit(:title, :author, :page_count, :url)
   end
 end
