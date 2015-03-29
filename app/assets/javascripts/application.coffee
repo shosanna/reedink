@@ -53,15 +53,15 @@ window.visualizeWeeklyReading = (dataset, days) ->
   chartPaddingY = 20
   chartPaddingX = 50
 
-  svg = prepareSVG(w, h + 20, '.d3-weekly-reading-chart')
+  svg = prepareSVG(w, h + 30, '.d3-weekly-reading-chart')
 
   # SCALES
   yScale = d3.scale.linear()
    .domain([0, d3.max(dataset)])
-   .range([0, h - chartPaddingY])
+   .range([0, h])
 
   yScaleAxis = d3.scale.linear()
-    .domain([chartPaddingY, d3.max(dataset) + chartPaddingY])
+    .domain([0, d3.max(dataset) + chartPaddingY])
     .range([h, 0])
 
   xScaleAxis = d3.scale.ordinal()
@@ -138,11 +138,12 @@ window.visualizeReadPages = (dataset, pages) ->
     .attr('width', (d, i) -> scale d[1] - d[0])
     .attr('height', h)
 
-# prepare SVG helper method
+# PREPARE SVG HELPER METHOD
 window.prepareSVG = (w, h, selector) ->
   svg = d3.select(selector).append('svg').attr('width', w).attr('height', h)
   svg
 
+# OTHER
 $ ->
   $('.select2-tags').each ->
     data = $(this).attr('data-tags')
