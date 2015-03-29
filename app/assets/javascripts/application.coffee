@@ -44,6 +44,19 @@ window.skillsTable = (data) ->
     .attr('y', (d,i) -> (i * 23) + 11)
     .attr('x', 0)
 
+
+  $ ->
+    d3.select('.new-skill')
+      .on 'click', ->
+        # TODO - neselectovat jenom form
+        json = $('form').serializeArray()[2]
+        $.post 'skills', { 'skill[name]': json.value }, (response) ->
+          # TODO - zobrazit success + resit chybovou odpoved!
+          data.push(response)
+          $('form').trigger('reset')
+
+          row = svg.selectAll('g').data(data)
+
 # WEEKLY READING BAR CHART
 window.visualizeWeeklyReading = (dataset, days) ->
   # DATASET = [0,0,50,15,0,5,60]

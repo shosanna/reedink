@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   def skill_data
     skills.map do |skill|
       {
+        id: skill.id,
         skill: skill.name,
         data: (7.days.ago.to_date).upto(Date.today).map do |date|
           {
@@ -50,5 +51,9 @@ class User < ActiveRecord::Base
         end
       }
     end
+  end
+
+  def skill_data_for_id(id)
+    skill_data.select { |s| s[:id] == id }.first
   end
 end

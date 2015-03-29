@@ -14,15 +14,8 @@ class SkillsController < AuthenticatedController
   end
 
   def create
-    @skill = current_user.skills.build(skill_params)
-
-    if @skill.save
-      flash[:success] = "Skill #{@skill.name} was added."
-      redirect_to skills_path
-    else
-      @skills = current_user.skills
-      render :index
-    end
+    skill = current_user.skills.create!(skill_params)
+    render json: current_user.skill_data_for_id(skill.id)
   end
 
   def destroy
