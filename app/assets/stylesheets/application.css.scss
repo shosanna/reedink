@@ -55,10 +55,6 @@ body {
 
 .unchecked-today-box {
   fill: $unchecked-today-color;
-
-  &:hover {
-    fill: $checked-color;
-  }
 }
 
 a {

@@ -36,6 +36,12 @@ window.skillsTable = (data) ->
           "unchecked-today-box"
         else
           "unchecked-box"
+    .on('mouseover', ->
+      d3.select('this')
+        .transition()
+        .duration(2000)
+        .fill('maroon'))
+
 
   text = svg.selectAll('text').data(data)
     .enter()
