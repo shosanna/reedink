@@ -100,3 +100,13 @@ a:hover {
   background-color: darken($main-link-color, 10%);
   border: none
 }
+
+.alert-success {
+  background-color: $unchecked-color;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+  background-color: $unchecked-color;
+  border-color: $unchecked-color;
+  color: $checked-color;
+}
