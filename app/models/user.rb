@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :notes, through: :reading_statuses
   has_many :books, through: :reading_statuses
   has_many :skills
+  has_many :reports, through: :skills
 
   def reading?(book)
     books.include? book

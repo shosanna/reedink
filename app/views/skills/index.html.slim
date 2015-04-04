@@ -3,10 +3,34 @@
   .svg-table
     script
       == "skillsTable(#{current_user.skill_data.to_json})"
-
 .row
-  h2 Create new skill
-  = simple_form_for @skill do |f|
-    = f.input :name
+  h2 Learning history
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th Date
+        th Skill
+        th Title
+        th Note
+    tbody
+      - @reports_objects.each do |report|
+        tr
+          td = report.created_at.strftime('%B %d, %Y')
+          td = report.skill.name
+          td = report.title
+          td = report.note
+.row.new-skill-note
+  .col-md-4
+    h2 What have you learnt today?
+    = simple_form_for @report do |f|
+      = f.association :skill, selected: 0
+      = f.input :title
+      = f.input :note
+      button.btn.btn-primary type="submit" Submit
 
-    button.btn.btn-primary type="submit" Submit
+  .col-md-offset-2.col-md-4
+    h2 Create new skill
+    = simple_form_for @skill do |f|
+      = f.input :name
+
+      button.btn.btn-primary type="submit" Submit

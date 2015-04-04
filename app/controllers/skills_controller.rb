@@ -3,8 +3,8 @@ class SkillsController < AuthenticatedController
     @skills = current_user.skills
     @skill = Skill.new(user_id: current_user.id)
 
+    @reports_objects = current_user.reports
     @reports = {}
-
     @skills.each do |skill|
       reports = skill.reports.map { |r| r.created_at.to_date }
       @reports[skill.name] = reports
