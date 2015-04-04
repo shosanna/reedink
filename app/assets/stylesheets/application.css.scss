@@ -3,16 +3,31 @@
 @import "select2";
 @import "select2-bootstrap";
 
-$progress-bar-color: rgba(185, 18, 27, 0.6);
-$progress-bar-highlight-color: rgba(185, 18, 27, 0.8);
-$weekly-reading-bar-color: rgb(185,18,27);
-$checked-color: #4C1B1B;
-$unchecked-color: #F6E497;
-$unchecked-today-color: #BD8D46;
-$main-link-color: rgb(185,18,27);
+$progress-bar-color: #77C4D3;
+$progress-bar-highlight-color: #333745;
+$weekly-reading-bar-color: #EA2E49;
+$checked-color: #333745;
+$unchecked-color: #DAEDE2;
+$unchecked-today-color: #77C4D3;
+$main-link-color: #EA2E49;
 
 body {
   color: $checked-color;
+  font-family: "adelle";
+}
+
+.navbar-default {
+  background-color: $main-link-color;
+  box-shadow: none;
+  border-radius: 0;
+  
+  .navbar-header a, .navbar-collapse li a, p.navbar-text {
+    color: white;
+  }
+  
+  .navbar-header a:hover, .navbar-collapse li a:hover {
+    color: $unchecked-color;
+  }
 }
 
 .d3-progress-bar {
