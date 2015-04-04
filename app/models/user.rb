@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     status.progresses.map { |p| p.page_to - p.page_from }.sum
   end
 
+  def last_read_books
+    reading_statuses.order(last_progress_at: :desc).first(3).map(&:book)
+  end
+
   def total_pages_per_day(day)
     reading_statuses.flat_map do |status|
       status.progresses.map do |x|

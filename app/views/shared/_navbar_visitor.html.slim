@@ -10,6 +10,9 @@ nav.navbar.navbar-default
         = nav_link "Skills", skills_path
 
       - if current_user
+        - current_user.last_read_books.each do |book|
+          = link_to book.title, book
+
         p.navbar-text.navbar-right
           ' Signed in as #{current_user.email},
           = link_to "log out", destroy_user_session_path, method: "DELETE"
