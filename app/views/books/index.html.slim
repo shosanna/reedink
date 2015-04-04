@@ -1,6 +1,6 @@
 h1 Book
 
-table.table.table-bordered.table-striped
+table.table.table-bordered.table-striped.books-table
   thead
     tr
       th Title
@@ -9,25 +9,25 @@ table.table.table-bordered.table-striped
       th Reading status
       th Actions
   tbody
-  - @books.each do |book|
-    tr
-      td = link_to book.title, book
-      td = book.author
-      td = book.tag_names
+    - @books.each do |book|
+      tr
+        td = link_to book.title, book
+        td = book.author
+        td = book.tag_names
 
-      td
-        - if book.user_id
-          span.label.label-default title="#{read_pages(book.status_id, current_user)} / #{book.page_count} pages"
-            = "#{read_percentage(book.status_id, book, current_user)}% read"
-        - else
-          p = start_reading_link book
+        td
+          - if book.user_id
+            span.label.label-default title="#{read_pages(book.status_id, current_user)} / #{book.page_count} pages"
+              = "#{read_percentage(book.status_id, book, current_user)}% read"
+          - else
+            p = start_reading_link book
 
-      td
-        = link_to edit_book_path(book) do
-          span.glyphicon.glyphicon-edit
+        td
+          = link_to edit_book_path(book) do
+            span.glyphicon.glyphicon-edit
 
-        = link_to book, method: "DELETE", data: { confirm: "Are you sure?" } do
-          span.glyphicon.glyphicon-trash
+          = link_to book, method: "DELETE", data: { confirm: "Are you sure?" } do
+            span.glyphicon.glyphicon-trash
 
 hr
 

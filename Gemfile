@@ -17,6 +17,7 @@ gem "devise"
 gem "jquery-rails"
 gem "d3-rails"
 gem "select2-rails"
+gem "jquery-datatables-rails", "~> 3.2.0"
 
 gem "trackets"
 gem "bcrypt", "~> 3.1.7"
