@@ -12,4 +12,8 @@ class ReadingStatus < ActiveRecord::Base
   def furthest_read
     progresses.maximum(:page_to) || 0
   end
+
+  def notes_for_progress(progress)
+    notes.where("date(created_at) = date(?)", created_at)
+  end
 end

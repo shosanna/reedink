@@ -17,11 +17,15 @@
             tr
               th Date
               th Pages
+              th Notes
           tbody
             - @progresses.each do |progress|
               tr
                 td = progress.created_at
                 td #{progress.page_from} - #{progress.page_to}
+                td
+                  - @status.notes_for_progress(progress).each do |note|
+                    = note.text
 
     .col-md-4.col-offset-2.book-progress-form
       h2 Log new progress
