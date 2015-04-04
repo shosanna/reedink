@@ -17,7 +17,8 @@ class BooksController < AuthenticatedController
   def show
     @book = Book.find(params[:id])
 
-    @progresses = current_user.progresses
+    @progresses = Progress.joins(:reading_status)
+      .where("reading_statuses.user_id = ? AND reading_statuses.book_id = ?", current_user.id, @book.id)
     @status = current_user.status_for(@book)
     if @status
       @dataset = @status.progresses.map { |p| [p.page_from, p.page_to] }
