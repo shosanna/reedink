@@ -48,6 +48,10 @@ body {
   .navbar-header a:hover, .navbar-collapse li a:hover {
     color: $unchecked-color;
   }
+
+  .reading-books li {
+    background: $checked-color; 
+  }
 }
 
 .d3-progress-bar {
