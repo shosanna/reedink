@@ -1,15 +1,29 @@
 .row
-  h1 = @book.title
   - if current_user.reading? @book
     .col-md-6
-      p You've read #{read_pages(@status.id, current_user)} / #{@book.page_count}
-        pages (#{read_percentage(@status.id, @book, current_user)}%).
+      h1 = @book.title
+      .row: .col-md-12
+        p You've read #{read_pages(@status.id, current_user)} / #{@book.page_count}
+          pages (#{read_percentage(@status.id, @book, current_user)}%).
 
-      .d3-progress-bar
-        script type="text/javascript"
-          = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
+        .d3-progress-bar
+          script type="text/javascript"
+            = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
 
-    .col-md-4.book-progress-form
+      .row: .col-md-12
+        h2 Reading log
+        table.table.table-bordered.table-striped
+          thead
+            tr
+              th Date
+              th Pages
+          tbody
+            - @progresses.each do |progress|
+              tr
+                td = progress.created_at
+                td #{progress.page_from} - #{progress.page_to}
+
+    .col-md-4.col-offset-2.book-progress-form
       h2 Log new progress
 
       = simple_form_for @progress do |f|
