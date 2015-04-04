@@ -5,6 +5,7 @@ class ReadingStatus < ActiveRecord::Base
   belongs_to :book
 
   has_many :progresses
+  has_many :notes
 
   validate :user, :book, presence: true
 

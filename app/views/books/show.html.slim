@@ -1,30 +1,35 @@
-h1 = @book.title
+.row
+  h1 = @book.title
+  - if current_user.reading? @book
+    .col-md-6
+      p You've read #{read_pages(@status.id, current_user)} / #{@book.page_count}
+        pages (#{read_percentage(@status.id, @book, current_user)}%).
 
-- if current_user.reading? @book
+      .d3-progress-bar
+        script type="text/javascript"
+          = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
 
-  p You've read #{read_pages(@status.id, current_user)} / #{@book.page_count}
-    pages (#{read_percentage(@status.id, @book, current_user)}%).
+    .col-md-4.book-progress-form
+      h2 Log new progress
 
-  .d3-progress-bar
-    script type="text/javascript"
-      = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
+      = simple_form_for @progress do |f|
+        = f.input :page_from
+        = f.input :page_to
+        = f.hidden_field :reading_status_id
+        .form-group
+          = label_tag :note
+          = text_area_tag :note, nil, class: 'form-control'
 
-  h2 Log new progress
+        br
+        button.btn.btn-primary type="submit" Save progress
+        '
+        = link_to "back to all books", books_path
 
-  = simple_form_for @progress do |f|
-    = f.input :page_from
-    = f.input :page_to
-    = f.hidden_field :reading_status_id
+      - current_user.progress_for(@book).each do |progress|
+        = progress.page_from
+        '
+        = progress.page_to
 
-    button.btn.btn-primary type="submit" Save progress
-    '
-    = link_to "back to all books", books_path
-
-  - current_user.progress_for(@book).each do |progress|
-    = progress.page_from
-    '
-    = progress.page_to
-
-- else
-  p = start_reading_link @book
+  - else
+    p = start_reading_link @book
 
