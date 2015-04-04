@@ -1,16 +1,16 @@
+$progress-bar-color: #77C4D3;
+$progress-bar-highlight-color: #333745;
+$weekly-reading-bar-color: #EA2E49;
+$checked-color: #333745;
+$unchecked-color: #F4F4F4;
+$unchecked-today-color: #77C4D3;
+$main-link-color: #EA2E49;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
 @import "select2";
 @import "select2-bootstrap";
-
-$progress-bar-color: #77C4D3;
-$progress-bar-highlight-color: #333745;
-$weekly-reading-bar-color: #EA2E49;
-$checked-color: #333745;
-$unchecked-color: #DAEDE2;
-$unchecked-today-color: #77C4D3;
-$main-link-color: #EA2E49;
 
 body {
   color: $checked-color;
@@ -18,14 +18,33 @@ body {
 }
 
 .navbar-default {
-  background-color: $main-link-color;
+  background: #C03246;
   box-shadow: none;
   border-radius: 0;
-  
+
+  a {
+    color: white;
+
+    &:hover {
+      color: $unchecked-color;
+    }
+  }
+
+  .navbar-nav .active a {
+    $navbar-active-link-bg: #D55062;
+    background: $navbar-active-link-bg;
+    color: $unchecked-color;
+
+    &:hover {
+      color: $unchecked-color;
+      background: darken($navbar-active-link-bg, 2%);
+    }
+  }
+
   .navbar-header a, .navbar-collapse li a, p.navbar-text {
     color: white;
   }
-  
+
   .navbar-header a:hover, .navbar-collapse li a:hover {
     color: $unchecked-color;
   }
