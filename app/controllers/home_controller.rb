@@ -1,4 +1,4 @@
-class HomeController < AuthenticatedController
+class HomeController < ApplicationController
   layout "home_layout"
 
   def index

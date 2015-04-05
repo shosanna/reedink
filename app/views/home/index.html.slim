@@ -6,8 +6,9 @@
 
     br
     .row: .col-md-offset-7.col-md-4
-      .btn.btn-primary.btn-lg Create free account
-      .btn.btn-primary.btn-lg Log in
+      = link_to "Create free account", new_user_registration_path, class: "btn btn-primary btn-lg"
+      '  
+      = link_to "Log in", new_user_session_path, class: "btn btn-primary btn-lg"
 
     br
     br
