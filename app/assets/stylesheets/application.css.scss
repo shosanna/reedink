@@ -84,15 +84,6 @@ body {
   }
 }
 
-// .book-progress-form {
-//   background-color: $progress-bar-color;
-//   padding: 20px;
-//
-//   a {
-//     color: $progress-bar-highlight-color;
-//   }
-// }
-
 .checked-box {
   fill: $checked-color;
 }
@@ -132,4 +123,33 @@ a:hover {
   background-color: $unchecked-color;
   border-color: $unchecked-color;
   color: $checked-color;
+}
+
+.navbar-visitor {
+  margin-bottom: 0;
+  border: 0;
+  box-shadow: 0 1px;
+}
+
+.home {
+  h1.main-title {
+    color: $progress-bar-color;
+    font-size: 44px;
+    text-shadow: 2px 2px 2px $checked-color;
+  }
+
+  .background {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+  }
+
+  .what-is-text {
+    color: $unchecked-color;
+    text-shadow: 1px 1px 1px $progress-bar-color;
+
+    li {
+      font-size: 22px;
+    }
+  }
 }

@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   
   resources :profile, only: :index
 
-  root to: "books#index"
+  root to: "home#index"
 end
