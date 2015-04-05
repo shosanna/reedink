@@ -3,14 +3,20 @@ h1 Profile
   .col-md-5
     h3 Currently reading:
     ol
-      - @books.each do |book|
-        li = link_to book.title, book_path(book.id)
+      - @books_pages.each do |book_page|
+        li 
+          = link_to book_page[0].title, book_path(book_page[0].id)
+          '  (
+          = book_page[1]
+          '  pages read )
+          
   .col-md-5
     h3 Currently learning:
     ol
       - @skills.each do |skill|
         li = link_to skill.name, skills_path
 .row
-  .d3-weekly-reading-chart
+  .col-md-12.d3-weekly-reading-chart
+    h2 Last week's reading
     script type="text/javascript"
       == "visualizeWeeklyReading(#{@dataset.to_json}, #{@days.to_json})";
