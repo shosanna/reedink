@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :progresses
   resources :skills
   resources :reports
+  resources :home, only: :index
   
   resources :profile, only: :index
 

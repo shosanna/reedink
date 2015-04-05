@@ -11,12 +11,11 @@ html
     = csrf_meta_tags
 
   body
-    = render "shared/navbar_user"
+    = render "shared/navbar_visitor"
 
-    .container
-      = render "shared/flash_messages"
+    = render "shared/flash_messages"
 
-      = yield
+    = yield
 
     footer
       hr
