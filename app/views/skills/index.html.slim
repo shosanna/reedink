@@ -1,9 +1,10 @@
-.row
+.row: .col-md-12
   h1 Skills
   .svg-table
     script
       == "skillsTable(#{current_user.skill_data.to_json})"
-.row
+
+.row: .col-md-12
   h2 Learning history
   table.table.table-bordered.table-striped
     thead
@@ -19,6 +20,8 @@
           td = report.skill.name
           td = report.title
           td = report.note
+br
+br
 .row.new-skill-note
   .col-md-4
     h2 What have you learnt today?
@@ -29,8 +32,18 @@
       button.btn.btn-primary type="submit" Submit
 
   .col-md-offset-2.col-md-4
-    h2 Create new skill
-    = simple_form_for @skill do |f|
-      = f.input :name
+    .row: .col-md-12
+      h2 Create new skill
+      = simple_form_for @skill do |f|
+        = f.input :name
 
-      button.btn.btn-primary type="submit" Submit
+        button.btn.btn-primary type="submit" Submit
+
+    .row: .col-md-12
+      h2 Delete skill
+      ul
+        - @skills.each do |skill|
+          li 
+            = skill.name 
+            = link_to skill, method: "DELETE", data: { confirm: "Are you sure?" } do
+              span.glyphicon.glyphicon-trash

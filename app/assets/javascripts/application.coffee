@@ -11,7 +11,7 @@ window.skillsTable = (data) ->
   rowHeight = 20
   width = 600
 
-  svg = prepareSVG(width, 200, '.svg-table')
+  svg = prepareSVG(width, 150, '.svg-table')
 
   # DATA = [{ skill: "Vim", data: [{ date: 1.1.2015, report: true }] }]
   row = svg.selectAll('g')
