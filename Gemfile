@@ -1,15 +1,15 @@
 source "https://rubygems.org"
 
 gem "rails", "4.1.9"
-gem "arel-helpers"
+gem "arel-helpers", "~> 2.1.0"
 
 gem "sass-rails", "~> 4.0.3"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.0.0"
 
-gem "slim-rails"
-gem "bootstrap-sass"
-gem "font-awesome-rails"
+gem "slim-rails",         "~> 3.0.1"
+gem "bootstrap-sass",     "~> 3.3.4.1"
+gem "font-awesome-rails", "~> 4.3.0.0"
 
 gem "pg"
 gem "simple_form"
