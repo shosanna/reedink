@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
         skill: skill.name,
         data: (7.days.ago.to_date).upto(Date.today).map do |date|
           {
+            skill_id: skill.id,
             date: date.strftime("%Y-%-m-%-d"),
             report: !!skill.reports.where("date(created_at) = ?", date).first
           }

@@ -16,4 +16,8 @@ class ReadingStatus < ActiveRecord::Base
   def notes_for_progress(progress)
     notes.where("date(created_at) = date(?)", created_at)
   end
+
+  def progress_data
+    progresses.map { |p| [p.page_from, p.page_to] }
+  end
 end

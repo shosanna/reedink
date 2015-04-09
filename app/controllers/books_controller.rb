@@ -21,7 +21,6 @@ class BooksController < AuthenticatedController
       .where("reading_statuses.user_id = ? AND reading_statuses.book_id = ?", current_user.id, @book.id)
     @status = current_user.status_for(@book)
     if @status
-      @dataset = @status.progresses.map { |p| [p.page_from, p.page_to] }
       @progress = @status.progresses.build(page_from: @status.furthest_read)
     end
   end

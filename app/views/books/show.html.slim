@@ -8,7 +8,7 @@
 
         .d3-progress-bar
           script type="text/javascript"
-            = "visualizeReadPages(#{@dataset.to_json}, #{@book.page_count})";
+            = "visualizeReadPages(#{@status.progress_data.to_json}, #{@book.page_count})";
 
       .row: .col-md-12
         h2 Reading log

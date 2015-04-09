@@ -45,6 +45,11 @@ window.skillsTable = (data) ->
     .on 'mouseleave', (d) ->
       if !d.report && d.date == todayString
         d3.select(this).attr('class','unchecked-today-box')
+    .on "click", (d) ->
+      $.post "/reports", {
+        report:
+          skill_id: d.skill_id
+      }, -> document.location.reload()
 
   text = svg.selectAll('text').data(data)
     .enter()
