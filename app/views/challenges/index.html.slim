@@ -1,14 +1,15 @@
-h1 Challenge
-
 .row
   - @data.each do |item|
     .col-md-3
-      h2 = item[:user].email
+      h1 = item[:user].email
+      hr
 
       - (7.days.ago.to_date..Date.today).to_a.reverse.each do |day|
         .item
           = day
           - current = item[:data][day]
-          h1 #{current ? current[:total] : 0} pages
+          - if current
+            h2 = "#{current[:total]} pages total"
+            p = "books: #{current[:progresses].map { |p| "#{p[:book].title} (#{p[:pages]} pages)" }.join(", ")}"
 
         hr
