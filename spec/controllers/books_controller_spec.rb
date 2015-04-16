@@ -9,5 +9,16 @@ describe BooksController do
       flash[:alert].should match("You need to sign in")
       response.should redirect_to(new_user_session_path)
     end
+
+    it "creates a book with the given user as its owner" do
+      user = create(:user)
+      sign_in user
+
+      post :create, book: { title: "foobar", author: "foo", page_count: 10 }
+
+      book = Book.first
+      book.title.should == "foobar"
+      book.user.should == user
+    end
   end
 end
