@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe BooksController do
   describe "#create" do
-    it "creates a book scoped to the current user" do
+    it "requires the user to sign in" do
       sign_in nil
       post :create
 
