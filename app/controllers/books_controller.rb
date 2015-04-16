@@ -37,11 +37,11 @@ class BooksController < AuthenticatedController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @book = current_user.owned_books.find(params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
+    @book = current_user.owned_books.find(params[:id])
     if @book.update_attributes(book_params)
       flash[:success] = "Book was updated."
       redirect_to @book
@@ -51,7 +51,7 @@ class BooksController < AuthenticatedController
   end
 
   def destroy
-    Book.find(params[:id]).destroy
+    current_user.owned_books.find(params[:id]).destroy
     flash[:success] = "Book was deleted."
     redirect_to books_path
   end
