@@ -1,7 +1,7 @@
 .row
   - @data.each do |item|
     .col-md-3
-      h1 = item[:user].email
+      h3: strong = item[:user].email
       hr
 
       - (7.days.ago.to_date..Date.today).to_a.reverse.each do |day|
