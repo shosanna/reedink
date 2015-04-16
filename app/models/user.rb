@@ -58,4 +58,28 @@ class User < ActiveRecord::Base
       }
     end
   end
+
+  def self.challenge_data
+    all.map do |user|
+      data = user.progresses.map do |progress|
+        {
+          pages: progress.pages_read,
+          date: progress.created_at.to_date,
+          book: progress.reading_status.book
+        }
+      end.group_by { |p| p[:date] }
+
+      data = data.map do |key, val|
+        [key, {
+          total: val.sum { |x| x[:pages] },
+          progresses: val
+        }]
+      end
+
+      {
+        user: user,
+        data: Hash[data]
+      }
+    end
+  end
 end

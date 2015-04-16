@@ -8,6 +8,10 @@ class Progress < ActiveRecord::Base
     reading_status.book
   end
 
+  def pages_read
+    page_to - page_from
+  end
+
   private
 
   def touch_reading_status

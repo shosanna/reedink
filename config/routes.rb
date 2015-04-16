@@ -5,11 +5,12 @@ Rails.application.routes.draw do
     resources :reading_statuses
   end
 
+  resources :challenges
+
   resources :progresses
   resources :skills
   resources :reports
   resources :home, only: :index
-  
   resources :profile, only: :index
 
   root to: "home#index"

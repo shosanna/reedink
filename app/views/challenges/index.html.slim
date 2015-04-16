@@ -1,0 +1,14 @@
+h1 Challenge
+
+.row
+  - @data.each do |item|
+    .col-md-3
+      h2 = item[:user].email
+
+      - (7.days.ago.to_date..Date.today).to_a.reverse.each do |day|
+        .item
+          = day
+          - current = item[:data][day]
+          h1 #{current ? current[:total] : 0} pages
+
+        hr
