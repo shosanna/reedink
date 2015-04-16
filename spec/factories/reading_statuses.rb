@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :reading_status do
-    user_id ""
-book_id ""
+    association :user
+    association :book
+    last_progress_at { Time.zone.now }
   end
-
 end
