@@ -14,6 +14,6 @@ class ProgressesController < AuthenticatedController
   private
 
   def progress_params
-    params.require(:progress).permit(:reading_status_id, :page_from, :page_to)
+    params.require(:progress).permit(:reading_status_id, :page_from, :page_to, :created_at)
   end
 end

@@ -33,6 +33,7 @@
       = simple_form_for @progress do |f|
         = f.input :page_from
         = f.input :page_to
+        = f.input :created_at
         = f.hidden_field :reading_status_id
         .form-group
           = label_tag :note
