@@ -10,11 +10,14 @@ class Book < ActiveRecord::Base
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
 
+  belongs_to :user
+
   def tag_names
     tags.map(&:name).join(",")
   end
 
   def tag_names=(value)
+    return unless value
     tags.destroy_all
 
     value.split(",").each do |tag_name|
