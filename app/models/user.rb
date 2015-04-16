@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :skills
   has_many :reports, through: :skills
 
+  has_many :owned_books, foreign_key: "user_id", class_name: "Book"
+
   def reading?(book)
     books.include? book
   end

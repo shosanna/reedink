@@ -26,7 +26,7 @@ class BooksController < AuthenticatedController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.owned_books.new(book_params)
     if @book.save
       @book.tag_names = params[:book][:tag_names]
       flash[:success] = "Book was created."
