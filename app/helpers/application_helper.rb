@@ -26,4 +26,12 @@ module ApplicationHelper
       end
     end
   end
+
+  def shorten(text, length = 30)
+    if text.length > 30
+      text[0..28] + "..."
+    else
+      text
+    end
+  end
 end
