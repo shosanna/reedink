@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def last_read_books
-    reading_statuses.order(last_progress_at: :desc).first(3).map(&:book)
+    reading_statuses.order(last_progress_at: :desc).first(2).map(&:book)
   end
 
   def total_pages_per_day(day)
